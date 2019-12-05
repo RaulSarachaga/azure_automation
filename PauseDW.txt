@@ -1,0 +1,19 @@
+#Created by: Raúl Saráchaga Díaz
+
+
+#Runbook de Apagado de Synapse Analytics
+
+#Colocar la suscripción
+$SubscriptionName = "SuscriptionID"
+
+#Colocar el Tenat
+$azuretenant = "TenantID"
+
+#Colocar el Credencial configurado
+$psCred = Get-AutomationPSCredential -Name 'CredentialAccount'
+
+#Realizar login
+Login-AzureRmAccount -Credential $psCred -SubscriptionId $SubscriptionName -TenantId $azuretenant
+
+#Intrucción para apagado de Azure Synapse Analytics  
+Suspend-AzureRmSqlDatabase –ResourceGroupName "Automation" –ServerName "serverbi64pro" –DatabaseName "dwbi64pro"
